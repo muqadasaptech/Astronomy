@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="earth.css">
+
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6> <!-- Only visible on small/medium screens -->
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks">
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/earth-main.jpg'); background-attachment: fixed;">
+        <div class="contain " style="padding-left: 20px; padding-right: 20px;">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 900; font-size: 100px;">Earth</h1>
+
+            <p class="lead" style="font-weight: 500; font-size: 25px;">Earth – our home planet – is the third planet
+                from the Sun, and the fifth largest planet. <br> It's the only place we know of inhabited by living
+                things.
+            </p>
+        </div>
+    </section>
+
+    <section id="planet-details" class="content-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <img src="images/world-1301744_640.webp" alt="" class="img-fluid roun"
+                    style="max-height: 200px;  width: 140px;">
+                    <h1 style="font-weight: 900;font-size: 3rem;">the evolution of earth</h1>
+            </div>
+
+
+            <!-- Introduction Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Introduction</h2>
+                <p style="font-size: 1.1rem; ">Earth is the third planet from the Sun and the only
+                    known planet to support life. It has a rich diversity of ecosystems, water bodies, and climates,
+                    making it unique in the solar system.</p>
+            </div>
+
+
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Size and Distance</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">With an equatorial diameter of 7926 miles (12,760
+                    kilometers), Earth is the biggest of the terrestrial planets and the fifth largest planet in our
+                    solar system.
+
+                    From an average distance of 93 million miles (150 million kilometers), Earth is exactly one
+                    astronomical unit away from the Sun because one astronomical unit (abbreviated as AU), is the
+                    distance from the Sun to Earth. This unit provides an easy way to quickly compare planets' distances
+                    from the Sun.
+
+                    It takes about eight minutes for light from the Sun to reach our planet.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Atmosphere</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Near the surface, Earth has an atmosphere that consists
+                    of 78% nitrogen, 21% oxygen, and 1% other gases such as argon, carbon dioxide, and neon. The
+                    atmosphere affects Earth's long-term climate and short-term local weather and shields us from much
+                    of the harmful radiation coming from the Sun. It also protects us from meteoroids, most of which
+                    burn up in the atmosphere, seen as meteors in the night sky, before they can strike the surface as
+                    meteorites.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Ring</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Unlike the gas giants, Earth does not have rings.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Orbit and Rotation</h2>
+                <p style="font-size: 20px; line-height: 1.7;">As Earth orbits the Sun, it completes one rotation every
+                    23.9 hours. It takes 365.25 days to complete one trip around the Sun. That extra quarter of a day
+                    presents a challenge to our calendar system, which counts one year as 365 days. To keep our yearly
+                    calendars consistent with our orbit around the Sun, every four years we add one day. That day is
+                    called a leap day, and the year it's added to is called a leap year.
+
+                    Earth's axis of rotation is tilted 23.4 degrees with respect to the plane of Earth's orbit around
+                    the Sun. This tilt causes our yearly cycle of seasons. During part of the year, the northern
+                    hemisphere is tilted toward the Sun, and the southern hemisphere is tilted away. With the Sun higher
+                    in the sky, solar heating is greater in the north producing summer there. Less direct solar heating
+                    produces winter in the south. Six months later, the situation is reversed. When spring and fall
+                    begin, both hemispheres receive roughly equal amounts of heat from the Sun.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Potential for life</h2>
+                <p style="font-size: 20px; line-height: 1.7;">Earth has a very hospitable temperature and mix of
+                    chemicals that have made life abundant here. Most notably, Earth is unique in that most of our
+                    planet is covered in liquid water, since the temperature allows liquid water to exist for extended
+                    periods of time. Earth's vast oceans provided a convenient place for life to begin about 3.8 billion
+                    years ago.
+                </p>
+                <p style="font-size: 20px;"> Some of the features of our planet that make it great for sustaining life
+                    are changing due to the
+                    ongoing effects of climate change.
+                </p>
+
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Moons</h2>
+                <p style="font-size: 20px; line-height: 1.7;">Earth is the only planet that has a single moon. Our
+                    Moon is the brightest and most familiar object in the night sky. In many ways, the Moon is
+                    responsible for making Earth such a great home. It stabilizes our planet's wobble, which has made
+                    the climate less variable over thousands of years.
+                </p>
+
+                <p style="font-size: 20px;"> Earth sometimes temporarily hosts orbiting asteroids or large rocks. They
+                    are typically trapped by
+                    Earth's gravity for a few months or years before returning to an orbit around the Sun. Some
+                    asteroids will be in a long “dance” with Earth as both orbit the Sun.</p>
+
+                <p style="font-size: 20px;"> Some moons are bits of rock that were captured by a planet's gravity, but
+                    our Moon is likely the
+                    result of a collision billions of years ago. When Earth was a young planet, a large chunk of rock
+                    smashed into it, displacing a portion of Earth's interior. The resulting chunks clumped together and
+                    formed our Moon. With a radius of 1,080 miles (1,738 kilometers), the Moon is the fifth largest moon
+                    in our solar system (after Ganymede, Titan, Callisto, and Io).</p>
+
+                <p style="font-size: 20px;"> The Moon is an average of 238,855 miles (384,400 kilometers) away from
+                    Earth. That means 30
+                    Earth-sized planets could fit in between Earth and its Moon.</p>
+            </div>
+
+            <div class="text-center mb-5">
+                <img src="images/solaris-3365405_640.jpg" alt="Jupiter"
+                    style="max-height: 600px; object-fit: cover; width: 100%;">
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Formation</h2>
+                <p style="font-size: 20px; line-height: 1.7;">When the solar system settled into its current layout
+                    about 4.5 billion years ago, Earth formed when gravity pulled swirling gas and dust in to become the
+                    third planet from the Sun. Like its fellow terrestrial planets, Earth has a central core, a rocky
+                    mantle, and a solid crust.
+                </p>
+            </div>
+
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Surface</h2>
+                <p style="font-size: 20px; line-height: 1.7;">Like Mars and Venus, Earth has volcanoes, mountains, and
+                    valleys. Earth's lithosphere, which includes the crust (both continental and oceanic) and the upper
+                    mantle, is divided into huge plates that are constantly moving. For example, the North American
+                    plate moves west over the Pacific Ocean basin, roughly at a rate equal to the growth of our
+                    fingernails. Earthquakes result when plates grind past one another, ride up over one another,
+                    collide to make mountains, or split and separate.</p>
+
+                <p style="font-size: 20px;"> Earth's global ocean, which covers nearly 70% of the planet's surface, has
+                    an average depth of about
+                    2.5 miles (4 kilometers) and contains 97% of Earth's water. Almost all of Earth's volcanoes are
+                    hidden under these oceans. Hawaii's Mauna Kea volcano is taller from base to summit than Mount
+                    Everest, but most of it is underwater. Earth's longest mountain range is also underwater, at the
+                    bottom of the Arctic and Atlantic oceans. It is four times longer than the Andes, Rockies and
+                    Himalayas combined.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Structure</h2>
+                <p style="font-size: 20px; line-height: 1.7;">Earth is composed of four main layers, starting with an
+                    inner core at the planet's center, enveloped by the outer core, mantle, and crust.
+
+                    The inner core is a solid sphere made of iron and nickel metals about 759 miles (1,221 kilometers)
+                    in radius. There the temperature is as high as 9,800 degrees Fahrenheit (5,400 degrees Celsius).
+                    Surrounding the inner core is the outer core. This layer is about 1,400 miles (2,300 kilometers)
+                    thick, made of iron and nickel fluids.
+
+                    In between the outer core and crust is the mantle, the thickest layer. This hot, viscous mixture of
+                    molten rock is about 1,800 miles (2,900 kilometers) thick and has the consistency of caramel. The
+                    outermost layer, Earth's crust, goes about 19 miles (30 kilometers) deep on average on land. At the
+                    bottom of the ocean, the crust is thinner and extends about 3 miles (5 kilometers) from the seafloor
+                    to the top of the mantle.</p>
+
+
+    </section>
+
+    <section data-aos="fade-up" class="content-section">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/earth-11015_640.jpg" alt="Comet Intro" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px; color: white;">Earth’s
+                                    Structure
+                                </h2>
+                                <p style="font-size:17px;">"Earth has four main layers: the crust, mantle, outer
+                                    core, and inner core. These layers work together to support life and play a
+                                    vital role in Earth’s geology."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 35px;">Earth’s Structure</h1>
+                </div>
+            </div>
+
+            <!-- Additional card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/sky-498658_640.jpg" alt="Comet Structure" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Earth’s Atmosphere </h4>
+                                <p style="font-size:17px;"> Earth's atmosphere is a mixture of gases, primarily
+                                    nitrogen and oxygen. It protects life on Earth by blocking harmful radiation
+                                    and reducing temperature extremes between day and night."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 35px;">Earth’s Atmosphere</h1>
+                </div>
+            </div>
+
+            <!-- Another card for additional content -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/forest.jpg" alt="Comet Tail" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Earth's Ecosystems</h4>
+                                <p style="font-size:17px;">Earth’s ecosystems are diverse, supporting a wide
+                                    variety of life forms. These ecosystems provide essential resources like
+                                    oxygen, water, and food for life on Earth."</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 35px;">Earth's Ecosystems</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <div class="video-container">
+        <iframe width="100%" height="715" src="https://www.youtube.com/embed/LinWJsangs4?si=2vX5O_Jx7lVR2A8s"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover More Topics From Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/planet disc.png" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Planets</h5>
+                            <a href="plannet.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/jupiter-marble-pia22946-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Jupiter</h5>
+                            <a href="jupiter.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/saturn.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">saturn</h5>
+                            <a href="saturn.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    
+    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <script>
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+    
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+    
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+    
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+    
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+    
+            emailInput.value = '';
+        }
+    
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+    
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+    
+        AOS.init();
+    
+        window.onscroll = function () {
+            let btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    
+</body>
+
+</html>

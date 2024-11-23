@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="planet.css">
+
+
+
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks"> 
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="hero d-flex align-items-center justify-content-center text-center text-white"
+        style="background-image: url( 'images/pia06890-our-solar-system-banner-1920x640-1.webp'); background-size: cover; background-attachment: fixed; background-position: center;">
+        <div class="container">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 00;">About the Planets</h1>
+            <!-- 'display-4' for responsive heading size -->
+            <p class="lead" style="font-weight: 500; font-size: 25px;">The solar system has eight planets: Mercury,
+                Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. There are five officially recognized dwarf
+                planets in our solar system: Ceres, Pluto, Haumea, Makemake, and Eris.</p>
+        </div>
+    </section>
+
+
+    <section id="planets" class="content-section" style="background-color: lightblue;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="mb-4" style="font-size: 2.5rem; font-weight: bold;">What is a Planet?</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">
+                        A planet is a celestial body that orbits a star, like the Sun in our Solar System. Planets can
+                        be rocky or gaseous and are shaped into spheres by their own gravitational force. To be
+                        officially classified as a planet, an object must meet specific criteria:
+                    </p>
+                    <ul style="font-size: 1.1rem; line-height: 1.6;">
+                        <li><strong>Orbits a Star:</strong> It consistently revolves around a star (such as the Sun).
+                        </li>
+                        <li><strong>Self-Gravitational Shape:</strong> Its gravity molds it into a nearly round shape.
+                        </li>
+                        <li><strong>Clear Orbital Path:</strong> It has cleared its orbit of other debris.</li>
+                    </ul>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="img-container"
+                        style="overflow: hidden; border-radius: 50%; position: relative; width: 300px; height: 300px; margin: auto;">
+                        <img src="images/space-circle.jpg" alt="Planet" class="img-fluid"
+                            style="border: 2px solid #e94560; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="planets" class="content-section">
+        <div class="contain" style="padding-left: 20px; padding-right: 20px;">
+            <h2 class="mb-4 text-center" style="font-size: 5rem; font-weight: bold; text-decoration: underline;">Planets
+            </h2><br><br><br><br><br><br>
+            <h1 class="mb-5 text-start" style="font-weight: 700; font-size: 45px; line-height: 1px;">Inner Planets</h1>
+            <p style="font-size: 20px; line-height: 30px; font-weight: 500; padding-bottom: 40px;">The first four
+                planets from the Sun are Mercury, Venus, Earth, and Mars. These inner planets also are known as
+                <br>terrestrial planets because they have solid surfaces.
+            </p>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> 
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/pia15162-mercury-basins-messenger-16x9-1.webp" class="card-img-top"
+                            alt="Mercury" style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Mercury</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Mercury is the smallest planet in
+                        our solar system, and the nearest to the Sun.</p>
+                    <a href="mercury.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> 
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/venus-mariner-10-pia23791-fig2-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Venus</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Venus is the second planet from the
+                        Sun, and Earth's closest planetary neighbor..</p>
+                    <a href="venus.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> 
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/earth-11015_640.jpg" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Earth</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Earth – our home planet – is the
+                        third planet from the Sun, and the fifth largest planet.</p>
+                    <a href="earth.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> 
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/mars-full-globe-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Mars</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Mars – the fourth planet from the
+                        Sun – is a dusty, cold, desert world with a very thin atmosphere.</p>
+                    <a href="mars.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="contain" style="padding-left: 20px; padding-right: 20px; padding-top: 100px;">
+
+            <h1 class="mb-5 text-start" style="font-weight: 700; font-size: 45px; line-height: 1px;">Outer Planets</h1>
+            <p style="font-size: 20px; line-height: 30px; font-weight: 500; padding-bottom: 40px;">The giant planets in
+                our outer solar system don't have hard surfaces and instead have swirling gases above a core.
+                <br>Jupiter and Saturn are gas giants. Uranus and Neptune are ice giants.
+            </p>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/jupiter-marble-pia22946-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Jupiter</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Jupiter is the largest planet in
+                        our solar system – if it were a hollow shell, 1,000 Earths could fit inside.</p>
+                    <a href="jupiter.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/saturn-farewell-pia21345-sse-banner-1920x640-1.webp" class="card-img-top"
+                            alt="Mercury" style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Saturn</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Saturn is the sixth planet from the
+                        Sun, the second-largest planet in our solar system.</p>
+                    <a href="saturn.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/uranus-pia18182-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Uranus</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">The seventh planet from the Sun,
+                        Uranus has the third largest diameter of planets in our solar system.</p>
+                    <a href="uranus.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/pia01492-neptune-full-disk-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Neptune</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Neptune is the eighth and most
+                        distant planet in our solar system.
+
+                    </p>
+                    <a href="neptune.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="contain" style="padding-left: 20px; padding-right: 20px; padding-top: 150px;">
+            <h1 class="mb-5 text-start" style="font-weight: 700; font-size: 45px; line-height: 1px;">Dwarf Planets </h1>
+            <p style="font-size: 20px; line-height: 30px; font-weight: 500; padding-bottom: 40px;">Beyond Neptune, a
+                newer class of smaller worlds called dwarf planets reign, including longtime favorite Pluto. The other
+                dwarf planets are Ceres, Makemake, Haumea, and Eris. Ceres is the only dwarf planet in the inner solar
+                system. It's located in the main asteroid belt between Mars and Jupiter.</p>
+            <div class="row justify-content-center">
+                <!-- Mercury Card -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;"> 
+                        <img src="images/ceres-dawn-pia19562-16x9-1.webp" class="card-img-top" alt="Mercury"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Ceres Facts</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Dwarf planet Ceres is the largest
+                        object in the asteroid belt between Mars and Jupiter, and it's the only dwarf planet located in
+                        the inner solar system.</p>
+
+
+
+                </div>
+
+                <!-- Venus Card -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/pluto-new-horizons-pia20291-16x9-1.webp" class="card-img-top" alt="Venus"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Pluto Facts</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Pluto was long considered our solar
+                        system's ninth planet. But it was reclassified as a dwarf planet in 2006 by the International
+                        Astronomical Union.</p>
+
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/haumea-30jun2015-22-28ok2-final-16x9-1.webp" class="card-img-top" alt="Venus"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Haumea Facts</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Haumea was nicknamed Santa by one
+                        discovery team. It is oval-shaped, and is one of the fastest rotating large objects in our solar
+                        system.</p>
+
+
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" style="padding-top: 80px;">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/dwarf-planet-makemake-16x9-1.webp" class="card-img-top" alt="Venus"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Makemake Facts</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">Makemake is slightly smaller than
+                        Pluto, and is the second-brightest object in the Kuiper Belt, while Pluto is the brightest. </p>
+
+
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4" style="padding-top: 80px;">
+                    <div class="card" style="height: 350px; width: 100%;">
+                        <img src="images/ErisArtistConcept1200w.jpg" class="card-img-top" alt="Venus"
+                            style="object-fit: cover; height: 100%; width: 100%;">
+                    </div>
+                    <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px;">Eris Facts</h5>
+                    <p class="text-start" style="font-size: 18px; font-weight: 400;">The discovery of Eris helped
+                        trigger a debate in the scientific community that led to the decision to clarify the definition
+                        of a planet.</p>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+
+    <div class="video-container">
+        <iframe width="100%" height="715" src="https://www.youtube.com/embed/lcZTcfdZ3Ow?si=BcXbb_rwD87NYNTt"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover Moren Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/comets home.jpg" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Comets</h5>
+                            <a href="comets.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/stars-home.jpg" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">constellation</h5>
+                            <a href="constellation.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/mercury-back.jpg" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Mercury</h5>
+                            <a href="mercury.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/earth-1.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Earth</h5>
+                            <a href="earth.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email Subscription Confirmation -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+
+    <script>
+
+const modal = document.getElementById("messageModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+const emailInput = document.getElementById("emailInput");
+const submitBtn = document.getElementById("submitBtn");
+
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+}
+
+closeBtn.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+function validateEmailAndSubmit(event) {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailPattern.test(email)) {
+        showModal("Thank you! We've received your email: " + email);
+    } else {
+        showModal("Please enter a valid email address.");
+    }
+
+    emailInput.value = '';
+}
+
+submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+emailInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        validateEmailAndSubmit(event);
+    }
+});
+
+    </script>
+
+</body>
+
+</html>

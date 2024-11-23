@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="about.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+    /* Button Styling */
+    #scrollTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #2c2f3f;
+        /* Dark grey with a hint of black */
+        color: #fff;
+        font-size: 24px;
+        font-family: 'Arial', sans-serif;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: none;
+        /* Initially hidden */
+    }
+
+    /* Hover effect */
+    #scrollTopBtn:hover {
+        background-color: #444c5a;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+        transition: all 0.2s ease-in-out;
+    }
+
+    #scrollTopBtn:hover i {
+        transform: rotate(180deg);
+    }
+
+    #scrollTopBtn.show {
+        display: block;
+    }
+    
+    #scrollTopBtn:hover {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks">
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar System</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">Constellations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">planets and stars</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center justify-content-center text-start text-white"
+        style="background-image: url('images/constellation8.png'); height: 100vh; background-attachment: fixed;">
+        <div class="h1-home">
+            <h1 style="font-weight: 700; font-size: 60px">About astronomy</h1>
+            <p class="lead">astronomy explores the unknown in air and space, innovates for <br> the benefit of humanity,
+                and inspires the world through discovery.</p>
+        </div>
+    </section>
+
+
+    <!-- First Section: Text and Image Side by Side -->
+    <section class="content-section bg-white py-5">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Left side: Text -->
+            <div style="flex: 1; padding-right: 20px;">
+                <h1 style="font-size: 36px; font-weight: bold;">Astronomy Today</h1>
+                <p style="font-size: 18px;">
+                    astronomy explores the unknown in air and space, innovates for the benefit of humanity, and inspires
+                    the world through discovery. For more than 65 years, astronomy has made the seemingly impossible,
+                    possible. At its 20 centers and facilities across the country and with U.S. commercial companies and
+                    international partners, astronomy leads studying Earth science,
+                </p>
+                <p style="font-size: 18px;">
+                    including climate, our Sun, solar system, and the larger universe. We conduct cutting-edge research
+                    to advance technology and aeronautics. We operate the world’s leading space laboratory, the
+                    International Space Station, and will establish a sustainable and strong exploration presence on the
+                    Moon this decade through the Artemis campaign.
+                </p>
+            </div>
+
+            <!-- Right side: Image -->
+            <div style="flex: 1;">
+                <img src="images/about1.webp" alt="Astronomy Image"
+                    style="max-width: 100%; height: auto; border-radius: 10px;">
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-light py-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm" style="min-height: 450px;">
+                        <img src="images/about2.webp" alt="Administrator Bill Nelson" class="card-img-top rounded-3" style="height: 350px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-weight: bold; font-size: 22px;">Administrator Bill Nelson</h5>
+                            <p class="card-text" style="font-size: 16px;">Sen. Bill Nelson was sworn in as the 14th astronomy Administrator on May 3, 2021, tasked with carrying out the Biden-Harris administration vision for the agency. Nelson served in the U.S. Senate for 18 years from Florida and as a payload specialist on space shuttle mission 61-C in 1986.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm" style="min-height: 450px;">
+                        <img src="images/about3.jpg" alt="Deputy Administrator Pam Melroy" class="card-img-top rounded-3" style="height: 350px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-weight: bold; font-size: 22px;">Deputy Administrator Pam Melroy</h5>
+                            <p class="card-text" style="font-size: 16px;">Col. (USAF, ret) Pam Melroy was sworn in as the astronomy deputy administrator on June 21, 2021. Melroy performs the duties and exercises the powers delegated by the administrator, assists the administrator in making final agency decisions, and acts for the administrator in his absence.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-4 col-sm-6">
+                    <div class="card border-0 shadow-sm" style="min-height: 450px;">
+                        <img src="images/about4.webp" alt="Associate Administrator James Free" class="card-img-top rounded-3" style="height: 350px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-weight: bold; font-size: 22px;">Associate Administrator James Free</h5>
+                            <p class="card-text" style="font-size: 16px;">James Free is the senior advisor to Administrator Bill Nelson and Deputy Administrator Pam Melroy. In his role, Free leads the agency's 10 center directors as well as the mission directorate associate administrators. Free previously served as associate administrator for the Exploration .</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="mid-content position-relative">
+            <img src="images/about5.webp" alt="Careers at astronomy" class="img-fluid w-100 rounded-3" style="opacity: 0.9;">
+            <div class="position-absolute top-50 px-4" style="color: rgb(255, 255, 255);">
+                <h1 class="fs-1 fw-bold">Careers at astronomy</h1>
+                <p class="fs-5 text-light">
+                    Align your talents with your passion and find out why <br>astronomy consistently is named a best
+                    place to work in <br> the federal government.
+                    At astronomy, you'll have an opportunity to <br> work on unique and challenging projects that truly
+                    make an impact on humanity.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container my-5">
+        <h1 class="text-center mb-4">Faces of astronomy</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about7.webp" class="card-img-top" alt="astronomy Image 1">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about8.webp" class="card-img-top" alt="astronomy Image 2">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about9.webp" class="card-img-top" alt="astronomy Image 3">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about10.webp" class="card-img-top" alt="astronomy Image 4">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about11.webp" class="card-img-top" alt="astronomy Image 5">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about12.webp" class="card-img-top" alt="astronomy Image 6">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about13.webp" class="card-img-top" alt="astronomy Image 7">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about14.webp" class="card-img-top" alt="astronomy Image 8">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about15.webp" class="card-img-top" alt="astronomy Image 9">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about18.webp" class="card-img-top" alt="astronomy Image 10">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about16.webp" class="card-img-top" alt="astronomy Image 11">
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0">
+                    <img src="images/about17.webp" class="card-img-top" alt="astronomy Image 12">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="image-section">
+        <img src="images/about19.webp" alt="Explore the Universe" class="img-fluid">
+        <div class="text-overlay">
+            <h1>Explore the Universe from your Inbox</h1>
+            <p>Stay up-to-date on the latest news from astronomy–from Earth to the Moon, the Solar System and beyond.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover More Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/comets home.jpg" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Comets</h5>
+                            <a href="comets.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/stars-home.jpg" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title" style="font-size: 2rem;">constellation</h5>
+                            <a href="constellation.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/mercury-back.jpg" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Mercury</h5>
+                            <a href="mercury.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/earth-1.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Earth</h5>
+                            <a href="earth.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email!--->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scroll-to-Top Button -->
+    <button onclick="scrollToTop()" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+
+
+
+    <!-- JavaScript Imports (Bootstrap, AOS, Lightbox) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <!-- Initialize AOS and Lightbox -->
+
+    <script>
+        AOS.init();
+    </script>
+
+
+    <script>
+        // Modal references
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+
+
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  // Email regex pattern
+
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+
+
+            emailInput.value = '';
+        }
+
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+
+
+
+        window.onscroll = function () {
+            var scrollTopBtn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        };
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+
+</body>
+
+</html>

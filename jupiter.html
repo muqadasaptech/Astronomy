@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="jupiter.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6> <!-- Only visible on small/medium screens -->
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks"> <!-- Always expanded on large screens -->
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/ai-generated-8440241_1280.webp'); background-attachment: fixed;">
+        <div class="contain " style="padding-left: 20px; padding-right: 20px;">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 900; font-size: 100px;">Jupiter</h1>
+
+            <p class="lead" style="font-weight: 500; font-size: 25px;">The solar system has eight planets: Mercury,
+                Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. <br> There are five officially recognized
+                dwarf
+                planets in our solar system: Ceres, Pluto, Haumea, Makemake, and Eris.</p>
+        </div>
+    </section>
+
+
+
+
+    <section id="planet-details" class="content-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <img src="images/planetarium-5636943_640.webp" alt="Jupiter" class="img-fluid roun"
+                    style="max-height: 200px;  width: 140px;">
+            </div>
+
+
+            <!-- Introduction Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Introduction</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter, the largest planet in our solar system, is a
+                    gas giant known for its prominent bands and the Great Red Spot—a massive storm persisting for
+                    centuries. With its powerful gravitational field, Jupiter has over 79 known moons and is mostly
+                    composed of hydrogen and helium, resembling a small star in composition.</p>
+            </div>
+
+
+            <div class="text-center mb-5">
+                <img src="images/jupiter-marble-pia22946-16x9-1.webp" alt="Jupiter" class="img-fluid rounded"
+                    style="max-height: 600px; object-fit: cover; width: 100%;">
+            </div>
+
+            <!-- Size Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Size</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter's diameter is about 143,000 kilometers (89,000
+                    miles), making it more than 11 times wider than Earth. This immense size allows it to influence
+                    other celestial bodies and stabilize the orbits of many nearby asteroids.</p>
+            </div>
+
+            <!-- Temperature Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Temperature</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter's temperature varies widely: the upper
+                    atmosphere averages around -145°C (-234°F), but the core, heated by intense pressure, reaches up to
+                    24,000°C (43,000°F). The planet emits more heat than it receives from the Sun, hinting at intense
+                    internal processes.</p>
+            </div>
+
+            <!-- Moons Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Ring</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter’s ring system, discovered by the Voyager 1
+                    spacecraft, is faint and consists mainly of dust particles from its moons. Unlike Saturn’s, these
+                    rings are thin and nearly invisible, but they span great distances around the planet.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Namesake</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter is named after the Roman king of gods,
+                    symbolizing strength and dominance. The name reflects the planet's majestic size and influence
+                    within our solar system.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Distance</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter orbits the Sun at an average distance of about
+                    778 million kilometers (484 million miles). Its vast distance from the Sun positions it beyond the
+                    asteroid belt, nearly five times farther than Earth.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Formation</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Formed around 4.5 billion years ago, Jupiter likely
+                    emerged early in the solar system’s history, accumulating gas and dust from the protoplanetary disk.
+                    Its rapid formation played a role in shaping the structure of the outer solar system.</p>
+            </div>
+
+            <div class="text-center mb-5">
+                <img src="images/space-8769047_640.jpg" alt="Jupiter" class="img-fluid rounded"
+                    style="max-height: 600px;width: 40%;">
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Atmosphere</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter’s atmosphere comprises mostly hydrogen and
+                    helium, with traces of methane, ammonia, and water vapor. Its iconic bands result from rapid
+                    rotation and complex weather systems. Strong winds and colorful clouds create its striking striped
+                    appearance.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Surface</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">While Jupiter lacks a solid surface, its upper
+                    atmosphere gradually transitions to liquid hydrogen under extreme pressure. The intense atmospheric
+                    layers contain ammonia clouds, causing variations in color and cloud depth.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Structure</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter is structured with an outer gaseous layer,
+                    followed by a layer of liquid metallic hydrogen that generates its strong magnetic field. At its
+                    core, Jupiter likely has a dense, rocky core about the size of Earth, though details remain
+                    uncertain due to extreme pressures.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover Moren Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/comets home.jpg" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Comets</h5>
+                            <a href="comets.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/venus big.webp" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Venus</h5>
+                            <a href="venus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/uranus-pia18182-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Uranus</h5>
+                            <a href="uranus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email  -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <script>
+      
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+       
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+
+       
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+
+        
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+      
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();  
+
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
+
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+
+            emailInput.value = '';
+        }
+
+        
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+        
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

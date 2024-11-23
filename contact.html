@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+</head>
+
+<style>
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    
+
+
+
+    <section class="contact">
+        <div class="content">
+            <h2>Contact Us</h2>
+            <p>We're here to help! Whether you have a question, need assistance, or want to provide feedback, don't
+                hesitate to get in touch with us. Our team is dedicated to providing you with the best support possible.
+                Reach out and we’ll get back to you as soon as we can. Your satisfaction is our priority!</p>
+
+        </div>
+        <div class="container">
+            <div class="contactinfo">
+                <div class="box">
+                    <div class="icon"><b></b><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>saima arabian vilaas <br>block h sheet 88<br>house no 247</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon"><b></b><i class="fa-solid fa-phone"></i></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>0311-132-2966</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="icon"><b></b><i class="fa-solid fa-envelope"></i></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>temproryEmail@dummy.domain</p>
+                    </div>
+                </div>
+
+                <h2 class="txt">Connect with us</h2>
+                <ul class="sci">
+                    <li><a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li><a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                    <li><a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+                </ul>
+            </div>
+
+            <div class="contactform">
+                <form id="contactForm" onsubmit="return validateForm()">
+                    <h2>Send Message</h2>
+                    <div class="inputbox">
+                        <input type="text" id="name" required="required">
+                        <span>Full Name</span>
+                    </div>
+
+                    <div class="inputbox">
+                        <input type="email" id="email" required="required">
+                        <span>Email</span>
+                    </div>
+
+                    <div class="inputbox">
+                        <textarea id="message" required="required"></textarea>
+                        <span>Type your message...</span>
+                    </div>
+
+                    <div class="inputbox">
+                        <input type="submit" value="Send">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <div style="margin: 70px 0; text-align: center; color: white; ">
+        <h1 style="font-size: 40px; font-weight: bold; margin-bottom: 20px; color: #f5a623;">Visit Us at Saima Arabian
+            Villas</h1>
+
+        <!-- Location Info Box -->
+        <div
+            style="background-color: #2a2a2a; padding: 25px; border-radius: 10px; display: inline-block; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <p style="font-size: 18px; font-weight: 600;">Saima Arabian Villas, North Karachi</p>
+            <p style="font-size: 16px; font-weight: 400;">H Block, Sheet 88, House No. 247</p>
+            <p style="font-size: 16px; font-weight: 400;">Karachi, Pakistan</p>
+        </div>
+
+        <!-- Google Map -->
+        -->
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14462.480803368688!2d67.0395915!3d25.0130183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb341995ade87c9%3A0x8274c54242bf4be8!2sSaima%20Arabian%20Villas%20Gadap%20Town%2C%20Karachi%2C%20Karachi%20City%2C%20Sindh!5e0!3m2!1sen!2s!4v1731911733759!5m2!1sen!2s" width="100%" height="450" style="border: 0; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email Subscription Confirmation -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+    
+            if (name === "" || email === "" || message === "") {
+                alert("Please fill out all fields. The message will be submitted once you complete the form.");
+                return false;
+            }
+    
+            alert("Thank you for contacting us! We will get back to you soon.");
+            return true;
+        }
+    
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+    
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+    
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+    
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+    
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+    
+            emailInput.value = '';
+        }
+    
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+    
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+    </script>
+    
+
+  
+    <script src="images/https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="images/https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="images/https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="images/https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="images/https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>

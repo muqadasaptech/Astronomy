@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="constellation.css">
+
+
+</head>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks">
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar System</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">Constellations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+                        </div>
+                    </li>
+    
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- hero section  -->
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/stars-home.jpg'); background-attachment: fixed;">
+        <div class="contain ">
+            <h1 class="display-4 font-weight-bold " style="font-weight: 900; font-size: 100px;">constellations</h1>
+        </div>
+    </section>
+
+
+
+    <!-- Constellations Section -->
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Constellations</h1>
+            <p style="font-size: 19px;">
+                Constellations are groupings of stars that have been recognized and named by humans throughout history.
+                They are often seen as patterns or pictures in the night sky, and different cultures have their own
+                interpretations of these star patterns. The word "constellation" comes from the Latin "constellatio,"
+                meaning "set of stars."
+
+
+                There are 88 officially recognized constellations today, as defined by the International Astronomical
+                Union (IAU). These constellations cover the entire sky and help astronomers categorize and locate
+                celestial objects. Unlike planets, constellations do not physically exist as a collection of stars in
+                close proximity; rather, they are patterns that appear to be connected from our point of view on Earth,
+                often many light-years apart.
+
+
+            </p>
+        </div>
+    </section>
+
+    <section data-aos="fade-up" class="content-section">
+        <h2 class="section-title">Featured Constellations</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation1.jpg" alt="Orion" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px;">Orion</h2>
+                                <p style="font-size:17px;">Orion, visible worldwide, is one of the most recognizable
+                                    constellations, known for its iconic Belt and bright stars like Betelgeuse and
+                                    Rigel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Orion</h1>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation2.jpg" alt="Ursa Major" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Ursa Major</h4>
+                                <p style="font-size:17px;">Ursa Major, home to the Big Dipper, is a key constellation in
+                                    the northern sky, often used for navigation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Ursa Major</h1>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation3.jpg" alt="Scorpius" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Scorpius</h4>
+                                <p style="font-size:17px;">Scorpius, with its distinct scorpion shape, is one of the
+                                    brightest constellations, featuring the red star Antares as its heart.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Scorpius</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+   
+
+
+    <section data-aos="fade-up" class="content-section">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation7.jpg" alt="Cassiopeia" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px;">Cassiopeia</h2>
+                                <p style="font-size:17px;">Cassiopeia is easily recognized by its "W" shape in the
+                                    northern sky. Named after the vain queen in Greek mythology, it's visible year-round
+                                    near Polaris.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Cassiopeia</h1>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation8.png" alt="Lyra" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Lyra</h4>
+                                <p style="font-size:17px;">Lyra is home to Vega, one of the brightest stars. This small
+                                    northern constellation represents Orpheus's lyre in Greek mythology, and is
+                                    prominent in summer skies.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Lyra</h1>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/constellation9.jpg" alt="Hercules" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Hercules</h4>
+                                <p style="font-size:17px;">Hercules, named after the Roman hero, is a large northern
+                                    constellation. It contains the Hercules Cluster and is visible from most locations
+                                    on Earth.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Hercules</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Composition</h1>
+            <p style="font-size: 19px;">
+                The three broad composition classes of asteroids are C-, S-, and M-types.
+            </p>
+            <ul style="font-size: 19px;">
+                <li>The C-type (chondrite) asteroids are most common. They probably consist of clay and silicate rocks,
+                    and are dark in appearance. They are among the most ancient objects in the solar system.</li>
+                <li>The S-types ("stony") are made up of silicate materials and nickel-iron.</li>
+                <li>The M-types are metallic (nickel-iron). The asteroids' compositional differences are related to how
+                    far from the Sun they formed. Some experienced high temperatures after they formed and partly
+                    melted, with iron sinking to the center and forcing basaltic (volcanic) lava to the surface.</li>
+
+            </ul>
+            <p style="font-size: 19px;">The orbits of asteroids can be changed by Jupiter's massive gravity – and by
+                occasional close encounters
+                with Mars or other objects. These encounters can knock asteroids out of the main belt, and hurl them
+                into space in all directions across the orbits of the other planets. Stray asteroids and asteroid
+                fragments have slammed into Earth and the other planets in the past, playing a major role in altering
+                the geological history of the planets and in the evolution of life on Earth.</p>
+            <p style="font-size: 19px;">Scientists continuously monitor Earth-crossing asteroids, whose paths intersect
+                Earth's orbit, and
+                near-Earth asteroids that approach Earth's orbital distance to within about 28 million miles (45 million
+                kilometers) and may pose an impact danger. Radar is a valuable tool in detecting and monitoring
+                potential impact hazards. By reflecting transmitted signals off objects, images and other information
+                can be derived from the echoes. Scientists can learn a great deal about an asteroid's orbit, rotation,
+                size, shape, and metal concentration.</p>
+        </div>
+    </section>
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Constellation Classifications</h1>
+            <p style="font-size: 19px;">
+                <strong>Major Constellations:</strong> These are the most well-known and easily identifiable
+                constellations in the sky, such as Orion, Ursa Major, and Cassiopeia. These constellations have been
+                recognized and used by humans for thousands of years for navigation and cultural significance. They form
+                recognizable patterns and are typically located along the ecliptic or in prominent areas of the sky.
+            </p>
+            <p style="font-size: 19px;">
+                <strong> Zodiac Constellations:</strong> These 12 constellations lie along the path of the Sun across
+                the sky. They are important in astrology and represent specific periods in the year. The zodiac includes
+                constellations like Aries, Taurus, and Virgo, and the Sun appears to pass through each of them over the
+                course of a year.
+            </p>
+            <p style="font-size: 19px;">
+                <strong>Celestial Sphere Constellations:</strong> These constellations are a part of the broader sky and
+                are used by astronomers to map the night sky. They are arranged across the entire celestial sphere, not
+                necessarily forming recognizable patterns. Examples include the constellations in the southern
+                hemisphere, like Crux, which are not visible from the northern hemisphere.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">How Constellations Get Their Names</h1>
+            <p style="font-size: 19px;">
+                Constellations are typically named after mythological figures, animals, or objects. Many of their names
+                come from ancient Greek and Roman mythology. For example, the constellation of Orion is named after the
+                Greek hunter Orion, and Ursa Major is named after the Great Bear in Greek mythology.
+            </p>
+            <p style="font-size: 19px;">
+                The International Astronomical Union (IAU) officially recognizes 88 constellations, and they are
+                typically named based on their position in the sky or after the stars within them. For instance, Lyra is
+                named after the lyre of Orpheus, while Scorpius is named after the scorpion from Greek mythology.
+            </p>
+            <p style="font-size: 19px;">
+                In some cases, constellations have been named after navigational aids or cultural symbols. For example,
+                the Southern Cross (Crux) is a prominent constellation in the southern hemisphere, serving as a key
+                navigation aid for travelers in the Southern Hemisphere.
+            </p>
+        </div>
+    </section>
+
+    <div class="video-container">
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/rp1_d7XBsC8"
+            title="आसमान में दिखने वाले ये Patterns क्या है ? ब्रह्माण्ड का सबसे बड़ा तारामंडल ? What are Constellations"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover More Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/comets home.jpg" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Comets</h5>
+                            <a href="comets.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/venus big.webp" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Venus</h5>
+                            <a href="venus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/planet disc.png" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Planets</h5>
+                            <a href="plannet.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email Subscription Confirmation -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+    
+    <script>
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+    
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+    
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+    
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+    
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+    
+            emailInput.value = '';
+        }
+    
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+    
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+    
+        AOS.init();
+    
+        window.onscroll = function () {
+            let btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    
+</body>
+
+</html>

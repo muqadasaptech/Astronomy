@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+
+
+    #scrollTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #2c2f3f;
+        color: #fff;
+        font-size: 24px;
+        font-family: 'Arial', sans-serif;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: none;
+
+    }
+
+    #scrollTopBtn:hover {
+    background-color: #444c5a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.2s ease-in-out;
+}
+
+#scrollTopBtn:hover i {
+    transform: rotate(180deg);
+}
+
+#scrollTopBtn.show {
+    display: block;
+}
+
+#scrollTopBtn:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks">
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar System</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">Constellations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">planets and stars</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center justify-content-center text-center text-white"
+        style="background-image: url('images/futuristic-7868625_1280.jpg'); height: 100vh; background-attachment: fixed;">
+        <div>
+            <h1 style="font-weight: 700; font-size: 60px">Explore the Universe</h1>
+            <p class="lead">Dive into the mysteries of space with us!</p>
+        </div>
+    </section>
+
+    <section id="introduction" class="content-section">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="mb-4">About Astronomy</h2>
+            <p class="lead">Astronomy is the scientific study of celestial objects, space, and the universe as a
+                whole...</p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-5 mx-4" data-aos="fade-right">
+                    <h3>Importance of Astronomy</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Navigation:</strong> Celestial navigation has guided explorers for centuries.</li>
+                        <li><strong>Timekeeping:</strong> The movement of celestial bodies is crucial for calendars.
+                        </li>
+                        <li><strong>Understanding Our Place:</strong> Astronomy explores the potential for life beyond
+                            Earth.</li>
+                    </ul>
+                </div>
+                <div class="col-md-5 mx-4" data-aos="fade-left">
+                    <h3>Current Developments</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Groundbreaking Telescopes:</strong> The James Webb Space Telescope offers new
+                            insights.</li>
+                        <li><strong>Exciting Space Missions:</strong> Mars Rover and Voyager provide valuable data.</li>
+                        <li><strong>New Discoveries:</strong> Thousands of exoplanets expand our knowledge of habitable
+                            worlds.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <a href="pia06890-our-solar-system-banner-1920x640-1.webp" data-lightbox="astronomy-image">
+                    <img src="images/pia06890-our-solar-system-banner-1920x640-1.webp" alt="Astronomy Illustration"
+                        class="img-fluid rounded">
+                </a>
+            </div>
+            <p class="mt-4"><em>Explore the universe with us and unlock the secrets of the cosmos!</em></p>
+        </div>
+    </section>
+
+
+    <section id="astronomy-milestones" class="content-section">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="mb-4" style="font-size: 2.5rem; font-weight: bold;">Astronomy Milestones</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                "Key milestones in human progress in space that enhance our knowledge."
+            </p>
+    
+            <div class="row justify-content-center">
+    
+                <!-- Card 1 -->
+                <div class="col-md-4 mx-2" data-aos="fade-right">
+                    <div class="milestone-item" style="padding: 20px; transition: transform 0.3s;">
+                        <img src="images/moon landing.jpg" alt="Moon Landing" class="img-fluid"
+                            style="height: 250px; width: 100%; max-width: 300px; border: 3px solid #e94560; border-radius: 15px; object-fit: cover;">
+                        <h4 style="padding-top: 15px; font-size: 1.5rem; font-weight: bold;">First Moon Landing</h4>
+                        <p>In 1969, humans landed on the Moon, marking a historic achievement in space exploration.</p>
+                    </div>
+                </div>
+    
+                <!-- Card 2 -->
+                <div class="col-md-4 mx-2" data-aos="fade-up">
+                    <div class="milestone-item" style="padding: 20px; transition: transform 0.3s;">
+                        <img src="images/mars rovers.jpg" alt="Mars Rovers" class="img-fluid"
+                            style="height: 250px; width: 100%; max-width: 300px; border: 3px solid #e94560; border-radius: 15px; object-fit: cover;">
+                        <h4 style="padding-top: 15px; font-size: 1.5rem; font-weight: bold;">Mars Rovers</h4>
+                        <p>Since 1997, robotic rovers on Mars have provided insights into its terrain and climate.</p>
+                    </div>
+                </div>
+    
+                
+            </div>
+        </div>
+    </section>
+    
+
+
+    <section class="boxess" style="background-color: black; color:#e94560; padding: 20px;">
+        <h2 class="mb-4" style="font-size: 2.5rem; font-weight: bold; text-align:center">Wonders of the Universe</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; text-align:center; color: white;">
+            A journey through the celestial bodies that make up our vast universe.
+        </p>
+        <div class="row justify-content-center">
+            <!-- Mercury Card -->
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-right">
+                <div class="card" style="height: 350px; width: 100%;"> 
+                    <img src="images/planet photo.webp" class="card-img-top" alt="Mercury"
+                        style="object-fit: cover; height: 100%; width: 100%;">
+                </div>
+                <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px; color: white;">Planets</h5>
+                <p class="text-center" style="font-size: 18px; font-weight: 400; color: white;">"Planets are large
+                    objects that orbit stars. In our Solar System, there are eight planets from Mercury to Neptune, each
+                    unique in size, temperature, and orbit."</p>
+                <a href="plannet.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+            </div>
+
+            <!-- Venus Card -->
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                <div class="card" style="height: 350px; width: 100%;">
+                    <img src="images/sun king.jpg" class="card-img-top" alt="Venus"
+                        style="object-fit: cover; height: 100%; width: 100%;">
+                </div>
+                <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px; color: white;">Sun</h5>
+                <p class="text-center" style="font-size: 18px; font-weight: 400; color: white;">
+                    The Sun is a star at the center of our Solar System. It is a massive ball of hot, glowing gases
+                    primarily composed of hydrogen and helium.
+                    the Sun generates immense heat and light
+                </p>
+
+
+                <a href="sun.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+            </div>
+
+            <!-- Haumea Card -->
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-left">
+                <div class="card" style="height: 350px; width: 100%;">
+                    <img src="images/comets home.jpg" class="card-img-top" alt="Venus"
+                        style="object-fit: cover; height: 100%; width: 100%;">
+                </div>
+                <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px; color: white;">Comets</h5>
+                <p class="text-center" style="font-size: 18px; font-weight: 400; color: white;">"Comets are icy bodies
+                    that develop a bright tail and coma as they pass close to the Sun. They usually originate from the
+                    Oort Cloud or Kuiper Belt and start vaporizing when near the Sun."</p>
+                <a href="comets.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+            </div>
+
+
+            <!-- Venus Card -->
+            <div class="col-lg-4 col-md-6 mb-4" style="padding-top: 80px;" data-aos="fade-right">
+                <div class="card" style="height: 350px; width: 100%;">
+                    <img src="images/constilation home1.webp" class="card-img-top" alt="Venus"
+                        style="object-fit: cover; height: 100%; width: 100%;">
+                </div>
+                <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px; color: white;">Constellations
+                </h5>
+                <p class="text-center" style="font-size: 18px; font-weight: 400; color: white;">"Constellations are
+                    patterns of stars visible in the night sky and have cultural and mythological significance. Popular
+                    constellations include Orion and Ursa Major."</p>
+                <a href="constellation.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+            </div>
+
+            <!-- Haumea Card -->
+            <div class="col-lg-4 col-md-6 mb-4" style="padding-top: 80px;" data-aos="fade-left">
+                <div class="card" style="height: 350px; width: 100%;">
+                    <img src="images/earth-main.jpg" class="card-img-top" alt="Venus"
+                        style="object-fit: cover; height: 100%; width: 100%;">
+                </div>
+                <h5 class="mt-2 text-center" style="font-weight: 800; font-size: 35px; color: white;">Earth</h5>
+                <p class="text-center" style="font-size: 18px; font-weight: 400; color: white;">Earth, or natural
+                    satellite, orbits the Sun. It varies widely in size and shape, being the third planet from the Sun
+                    and the only known planet to support life</p>
+                <a href="earth.html" class="btn learn-more-btn d-block mx-auto">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="quiz" class="content-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Test Your Knowledge</h2>
+            <form>
+                <label for="question" style="font-size: 20px;">What is the closest planet to the Sun?</label>
+                <select id="question" class="form-control">
+                    <option value="mercury">Mercury</option>
+                    <option value="venus">Venus</option>
+                    <option value="earth">Earth</option>
+                    <option value="mars">Mars</option>
+                </select>
+                <br>
+                <label for="question" style="font-size: 20px;">Which planet has a day that is longer than its
+                    year?</label>
+                <select id="question" class="form-control">
+                    <option value="mercury">Venus</option>
+                    <option value="venus">Mercury</option>
+                    <option value="earth">Jupiter</option>
+                    <option value="mars">Mars</option>
+                </select>
+                <br>
+                <label for="question" style="font-size: 20px;">Which planet takes the longest time to orbit the
+                    Sun?</label>
+                <select id="question" class="form-control">
+                    <option value="mercury">Neptune</option>
+                    <option value="venus">Jupiter</option>
+                    <option value="earth">Earth</option>
+                    <option value="mars">Saturn</option>
+                </select>
+                <br>
+                <label for="question" style="font-size: 20px;">What is the main component of Saturn’s rings?</label>
+                <select id="question" class="form-control">
+                    <option value="mercury">Ice</option>
+                    <option value="venus">Rock</option>
+                    <option value="earth">Dust</option>
+                    <option value="mars">Metal</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+
+    </section>
+
+
+    <section id="cta" class="content-section text-center">
+        <div class="container">
+            <h2 class="mb-4">Join Our Astronomy Community</h2>
+            <p>Sign up for our newsletter to stay updated on the latest news and events in astronomy!</p>
+            <a href="contact.html" class="btn btn-success">Sign Up Now</a>
+        </div>
+    </section>
+
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <button onclick="scrollToTop()" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+
+    <script>
+        AOS.init();
+    </script>
+
+
+    <script>
+        // Modal references
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+
+
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+
+
+            emailInput.value = '';
+        }
+
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+
+
+
+        window.onscroll = function () {
+            var scrollTopBtn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollTopBtn.classList.add("show");
+            } else {
+                scrollTopBtn.classList.remove("show");
+            }
+        };
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+
+</body>
+
+</html>

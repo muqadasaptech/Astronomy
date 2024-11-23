@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="comets.css">
+
+
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6> <!-- Only visible on small/medium screens -->
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks"> <!-- Always expanded on large screens -->
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar System</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             all Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- hero section  -->
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/comets\ home.jpg'); background-attachment: fixed;">
+        <div class="contain ">
+            <h1 class="display-4 font-weight-bold " style="font-weight: 900; font-size: 100px;">Comets</h1>
+        </div>
+    </section>
+
+
+
+    <!-- Asteroids Section -->
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Comets</h1>
+            <p style="font-size: 19px;">
+                Comets are frozen leftovers from the formation of the solar system composed of dust, rock, and ices.
+                They range from a few miles to tens of miles wide, but as they orbit closer to the Sun, they heat up and
+                spew gases and dust into a glowing head that can be larger than a planet. This material forms a tail
+                that stretches millions of miles.
+            </p>
+            <p style="font-size: 19px;">Comets are cosmic snowballs of frozen gases, rock, and dust that orbit the Sun.
+                When frozen, they are the
+                size of a small town. When a comet's orbit brings it close to the Sun, it heats up and spews dust and
+                gases into a giant glowing head larger than most planets. The dust and gases form a tail that stretches
+                away from the Sun for millions of miles. There are likely billions of comets orbiting our Sun in the
+                Kuiper Belt and even more distant Oort Cloud.</p>
+        </div>
+    </section>
+
+
+    <section data-aos="fade-up" class="content-section">
+        <h2 class="section-title">Featured Comets</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets hartley 1.webp" alt="Comet Intro" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px;">Comet Hartley 2</h2>
+                                <p style="font-size:17px;">Comet Hartley 2 is a small, oval-shaped comet, with a nucleus
+                                    about 1 mile wide. It takes 6.47 years to orbit the Sun and last passed closest to
+                                    the Sun in 2017.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Comet Hartley 2</h1>
+                </div>
+            </div>
+
+            <!-- Additional card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets swift 2.webp" alt="Comet Structure" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Comet Swift-Tuttle</h4>
+                                <p style="font-size:17px;">Comet Swift-Tuttle takes 133 years to orbit the Sun. It last
+                                    passed close to the Sun in 1992 and will return again in 2125.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Comet Swift-Tuttle</h1>
+                </div>
+            </div>
+
+            <!-- Another card for additional content -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets borrelly 3.webp" alt="Comet Tail" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Comet Borrelly</h4>
+                                <p style="font-size:17px;">Comet Borrelly's nucleus is about 5 miles long and looks like
+                                    a chicken leg. It’s surrounded by a cloud of gas and dust called the coma.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Comet Borrelly</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="fade-up" class="content-section">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets hally 4.jpg" alt="Comet Intro" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px;">Halley's Comet</h2>
+                                <p style="font-size:17px;">Halley's Comet is one of the most famous comets. It was the
+                                    first comet to be recognized as a repeat visitor to Earth's skies. The comet's
+                                    appearances have been recorded for over 2,000 years. It was last seen in 1986 and
+                                    will return in 2061 after its 76-year journey around the Sun.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Halley's Comet</h1>
+                </div>
+            </div>
+
+            <!-- Additional card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets churyumov 5.jpg" alt="Comet Structure" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Comet Churyumov</h4>
+                                <p style="font-size:17px;">Comet 67P/Churyumov-Gerasimenko was the first comet to be
+                                    orbited and landed on by a spacecraft. In 2014, the Rosetta mission with the Philae
+                                    lander reached the comet and followed it as it traveled through the solar system.
+                                    The mission ended in 2016 after a controlled crash into the comet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Comet Churyumov</h1>
+                </div>
+            </div>
+
+            <!-- Another card for additional content -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets borisov 6.jpg" alt="Comet Tail" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Borisov Comet</h4>
+                                <p style="font-size:17px;">Comet 2I/Borisov is the first confirmed interstellar comet.
+                                    Discovered in August 2019 by Gennady Borisov, it became a sensation worldwide.
+                                    Scientists confirmed it came from outside our solar system after a week of
+                                    observations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Borisov Comet</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section data-aos="fade-up" class="content-section">
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets siding 11.webp" alt="Comet Intro" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #333; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h2 class="font-weight-bold" style="font-size: 40px;">Siding Spring</h2>
+                                <p style="font-size:17px;">In 2014, comet Siding Spring passed very close to Mars,
+                                    offering a unique opportunity for nearby spacecraft and rovers to study it up close.
+                                    The comet came within a third of the distance between Earth and the Moon.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Siding Spring</h1>
+                </div>
+            </div>
+
+            <!-- Additional card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets levy 14.jpeg" alt="Comet Structure" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #222; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">Shoemaker-Levy 9</h4>
+                                <p style="font-size:17px;">Comet Shoemaker-Levy 9 made history when it broke apart in
+                                    1993 and collided with Jupiter. The comet had been torn apart by the planet's
+                                    powerful gravity after it came too close in 1992.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">Shoemaker-Levy 9</h1>
+                </div>
+            </div>
+
+            <!-- Another card for additional content -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/comets oum 113.jpeg" alt="Comet Tail" class="w-100 h-100">
+                        </div>
+                        <div class="card-back p-4 d-flex align-items-center justify-content-center"
+                            style="background-color: #444; color: white; text-align: center; border-radius: 10px;">
+                            <div>
+                                <h4 class="font-weight-bold" style="font-size: 40px;">'Oumuamua</h4>
+                                <p style="font-size:17px;">'Oumuamua is the first known object from outside our solar
+                                    system to pass through. It’s a cigar-shaped, reddish rock that made a brief visit to
+                                    our solar system in 2017.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h1 style="color: black; font-weight: 700; font-size: 45px;">'Oumuamua</h1>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Where Do Comets Come From?</h1>
+            <p style="font-size: 19px;">
+                As theorized by astronomer Gerard Kuiper in 1951, a disc-like belt of icy bodies exists beyond Neptune,
+                where a population of dark comets orbits the Sun in the realm of Pluto. These icy objects, occasionally
+                pushed by gravity into orbits bringing them closer to the Sun, become the so-called short-period comets.
+                Taking less than 200 years to orbit the Sun, in many cases their appearance is predictable because they
+                have passed by before. Less predictable are long-period comets, many of which arrive from a region
+                called the Oort Cloud about 100,000 astronomical units (that is, about 100,000 times the distance
+                between Earth and the Sun) from the Sun. These Oort Cloud comets can take as long as 30 million years to
+                complete one trip around the Sun.
+            </p>
+            <p style="font-size: 19px;">
+                Each comet has a frozen part, called a nucleus, often a few miles across. The nucleus contains icy
+                chunks, frozen gases with bits of embedded dust. A comet warms up as it nears the Sun and develops an
+                atmosphere, or coma. The Sun's heat causes the comet's ices to change to gases so the coma gets larger.
+                The coma may extend hundreds of thousands of kilometers. The pressure of sunlight and high-speed solar
+                particles (solar wind) can blow the coma dust and gas away from the Sun, sometimes forming a long,
+                bright tail. Comets actually have two tails – a dust tail and an ion (gas) tail.
+            </p>
+            <p style="font-size: 19px;">Most comets travel a safe distance from the Sun. For example, Halley's comet
+                gets no closer than 55 million miles (89 million kilometers). However, some comets, called sungrazers,
+                fly into the Sun or get so close that they break up and evaporate.
+            </p>
+
+        </div>
+    </section>
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">Exploration of Comets</h1>
+            <p style="font-size: 19px;">
+                Scientists have long wanted to study comets in some detail, tantalized by the few 1986 images of comet
+                Halley's nucleus. NASA's Deep Space 1 spacecraft flew by comet Borrelly in 2001 and photographed its
+                nucleus, which is about 5 miles (8 kilometers) long.
+            </p>
+            <p style="font-size: 19px;">NASA's Stardust mission successfully flew within 147 miles (236 kilometers) of
+                the nucleus of Comet Wild 2 in January 2004, collecting cometary particles and interstellar dust for a
+                sample return to Earth in 2006. The photographs taken during this close flyby of a comet nucleus show
+                jets of dust and a rugged, textured surface. Analysis of the Stardust samples suggests that comets may
+                be more complex than originally thought. Minerals formed near the Sun or other stars were found in the
+                samples, suggesting that materials from the inner regions of the solar system traveled to the outer
+                regions where comets formed.
+            </p>
+            <p style="font-size: 19px;"> Another NASA mission, Deep Impact, consisted of a flyby spacecraft and an
+                impactor. In July 2005, the impactor was released into the path of the nucleus of comet Tempel 1 in a
+                planned collision, which vaporized the impactor and ejected massive amounts of fine, powdery material
+                from beneath the comet's surface. En route to impact, the impactor camera imaged the comet in increasing
+                detail. Two cameras and a spectrometer on the flyby spacecraft recorded the dramatic excavation that
+                helped determine the interior composition and structure of the nucleus.
+            </p>
+            <p style="font-size: 19px;"> After their successful primary missions, the Deep Impact spacecraft and the
+                Stardust spacecraft were still healthy and were retargeted for additional cometary flybys. Deep Impact's
+                mission, EPOXI (Extrasolar Planet Observation and Deep Impact Extended Investigation), comprised two
+                projects: the Deep Impact Extended Investigation (DIXI), which encountered comet Hartley 2 in November
+                2010, and the Extrasolar Planet Observation and Characterization (EPOCh) investigation, which searched
+                for Earth-size planets around other stars on route to Hartley 2. NASA returned to comet Tempel 1 in
+                2011, when the Stardust New Exploration of Tempel 1 (NExT) mission observed changes in the nucleus since
+                Deep Impact's 2005 encounter.
+            </p>
+
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h1 style="font-size: 59px;">How Comets Get Their Names</h1>
+            <p style="font-size: 19px;">
+                Comet naming can be complicated. Comets are generally named for their discoverer—either a person or a
+                spacecraft. This International Astronomical Union guideline was developed only in the last century. For
+                example, comet Shoemaker-Levy 9 was so named because it was the ninth short-periodic comet discovered by
+                Eugene and Carolyn Shoemaker and David Levy. Since spacecraft are very effective at spotting comets many
+                comets have LINEAR, SOHO or WISE in their names.
+            </p>
+
+        </div>
+    </section>
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover More Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/saturn-farewell-pia21345-sse-banner-1920x640-1.webp" class="card-img-top"
+                            alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Saturn</h5>
+                            <a href="saturn.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/stars-home.jpg" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title" style="font-size: 2rem;">constellation</h5>
+                            <a href="constellation.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/mars-full-globe-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Mars</h5>
+                            <a href="mars.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email Subscription Confirmation -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">&#8679;</button>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <script>
+        const modal = document.getElementById("messageModal");
+        const modalMessage = document.getElementById("modalMessage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+    
+        const emailInput = document.getElementById("emailInput");
+        const submitBtn = document.getElementById("submitBtn");
+    
+        function showModal(message) {
+            modalMessage.textContent = message;
+            modal.style.display = "block";
+        }
+    
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+    
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    
+        function validateEmailAndSubmit(event) {
+            event.preventDefault();
+    
+            const email = emailInput.value;
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+            if (emailPattern.test(email)) {
+                showModal("Thank you! We've received your email: " + email);
+            } else {
+                showModal("Please enter a valid email address.");
+            }
+    
+            emailInput.value = '';
+        }
+    
+        submitBtn.addEventListener("click", validateEmailAndSubmit);
+    
+        emailInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                validateEmailAndSubmit(event);
+            }
+        });
+    
+        AOS.init();
+    
+        window.onscroll = function () {
+            let btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    
+</body>
+
+</html>

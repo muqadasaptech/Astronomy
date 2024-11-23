@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="venus.css">
+
+
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html"> Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6> <!-- Only visible on small/medium screens -->
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks"> <!-- Always expanded on large screens -->
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/venus-project.webp'); background-attachment: fixed;">
+        <div class="contain " style="padding-left: 10px; padding-right: 10px;">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 900; font-size: 100px;"> Venus</h1>
+
+            <p class="lead" style="font-weight: 500; font-size: 25px;">Venus is the second planet from the Sun, and the
+                sixth largest planet. <br> It’s the hottest planet in our solar system.</p>
+        </div>
+    </section>
+
+
+
+
+    <section id="planet-details" class="content-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <img src="images/planetarium-5636941_640.webp" alt="" class="img-fluid roun"
+                    style="max-height: 200px;  width: 140px;">
+            </div>
+
+
+            <!-- Introduction Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Introduction</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Venus is the second planet from the Sun, and Earth's
+                    closest planetary neighbor. Venus is the third brightest object in the sky after the Sun and Moon.
+                    Venus spins slowly in the opposite direction from most planets.
+
+                    Venus is similar in structure and size to Earth, and is sometimes called Earth's evil twin. Its
+                    thick atmosphere traps heat in a runaway greenhouse effect, making it the hottest planet in our
+                    solar system with surface temperatures hot enough to melt lead. Below the dense, persistent clouds,
+                    the surface has volcanoes and deformed mountains.
+
+                </p>
+            </div>
+
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Size and Distance</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Venus orbits the Sun from an average distance of 67
+                    million miles (108 million kilometers), or 0.72 astronomical units. One astronomical unit
+                    (abbreviated as AU), is the distance from the Sun to Earth. From this distance, it takes sunlight
+                    about six minutes to travel from the Sun to Venus.
+
+                    Earth's nearness to Venus is a matter of perspective. The planet is nearly as big around as Earth.
+                    Its diameter at its equator is about 7,521 miles (12,104 kilometers), versus 7,926 miles (12,756
+                    kilometers) for Earth. From Earth, Venus is the brightest object in the night sky after our own
+                    Moon. The ancients, therefore, gave it great importance in their cultures, even thinking it was two
+                    objects: a morning star and an evening star. That’s where the trick of perspective comes in.
+
+                    Because Venus’ orbit is closer to the Sun than ours, the two of them – from our viewpoint – never
+                    stray far from each other. The ancient Egyptians and Greeks saw Venus in two guises: first in one
+                    orbital position (seen in the morning), then another (your “evening” Venus), just at different times
+                    of the year.
+
+                    At its nearest to Earth, Venus is about 24 million (about 38 million kilometers) away. But most of
+                    the time the two planets are farther apart. The maximum distance between Venus and Earth is about
+                    162 million miles (261 million kilometers). Mercury, the innermost planet, actually spends more time
+                    in Earth’s proximity than Venus.
+
+                    One more trick of perspective: how Venus looks through binoculars or a telescope. Keep watch over
+                    many months, and you’ll notice that Venus has phases, just like our Moon – full, half, quarter, etc.
+                    The complete cycle, however, new to full, takes 584 days, while our Moon takes just a month. And it
+                    was this perspective, the phases of Venus first observed by Galileo through his telescope, that
+                    provided the key scientific proof for the Copernican heliocentric nature of the solar system.</p>
+            </div>
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Temperature</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Venus has an average surface temperature of around 467°C
+                    (872°F), hotter than Mercury, even though it’s farther from the Sun.</p>
+            </div>
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Ring</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Like Earth, Venus does not have rings.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Potential for life</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Thirty miles up (about 50 kilometers) from the surface
+                    of Venus temperatures range from 86 to 158 Fahrenheit (30 to 70 Celsius). This temperature range
+                    could accommodate Earthly life, such as “extremophile” microbes. And atmospheric pressure at that
+                    height is similar to what we find on Earth’s surface.
+
+                    At the tops of Venus’ clouds, whipped around the planet by winds measured as high as 224 mph (360
+                    kph), we find another transformation. Persistent, dark streaks appear. Scientists are so far unable
+                    to explain why these streaks remain stubbornly intact, even amid hurricane-force winds. They also
+                    have the odd habit of absorbing ultraviolet radiation.
+
+                    The most likely explanations focus on fine particles, ice crystals, or even a chemical compound
+                    called iron chloride. Although it's much less likely, another possibility considered by scientists
+                    who study astrobiology is that these streaks could be made up of microbial life, Venus-style.
+                    Astrobiologists note that ring-shaped linkages of sulfur atoms, known to exist in Venus’ atmosphere,
+                    could provide microbes with a kind of coating that would protect them from sulfuric acid. These
+                    handy chemical cloaks would also absorb potentially damaging ultraviolet light and re-radiate it as
+                    visible light.
+
+                    Some of the Russian Venera probes did, indeed, detect particles in Venus’ lower atmosphere about a
+                    micron in length – roughly the same size as a bacterium on Earth.
+
+                    None of these findings provide compelling evidence for the existence of life in Venus’ clouds. But
+                    the questions they raise, along with Venus’ vanished ocean, its violently volcanic surface, and its
+                    hellish history, make a compelling case for missions to investigate our temperamental sister planet.
+                    There is much, it would seem, that she can teach us..
+
+
+                </p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Moons</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Venus has no moons, which is unique among the inner
+                    planets alongside Mercury.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Formation</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">A critical question for scientists who search for life
+                    among the stars: How do habitable planets get their start? The close similarities of early Venus and
+                    Earth, and their very different fates, provide a kind of test case for scientists who study planet
+                    formation. Similar size, similar interior structure, both harboring oceans in their younger days.
+                    Yet one is now an inferno, while the other is the only known world to host abundant life. The
+                    factors that set these planets on almost opposite paths began, most likely, in the swirling disk of
+                    gas and dust from which they were born. Somehow, 4.6 billion years ago that disk around our Sun
+                    accreted, cooled, and settled into the planets we know today. Better knowledge of the formation
+                    history of Venus could help us better understand Earth – and rocky planets around other stars..
+
+
+                </p>
+            </div>
+
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Atmosphere</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Venus has a thick, toxic atmosphere composed mostly of
+                    carbon dioxide, with clouds of sulfuric acid. This dense atmosphere creates a greenhouse effect,
+                    making it the hottest planet in our solar system.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Surface</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Mercury's surface is rocky, cratered, and features
+                    extensive plains and ridges. It also has “scarps,” which are cliff-like formations caused by the
+                    planet shrinking as it cooled.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Structure</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">If we could slice Venus and Earth in half, pole to pole,
+                    and place them side by side, they would look remarkably similar. Each planet has an iron core
+                    enveloped by a hot-rock mantle; the thinnest of skins forms a rocky, exterior crust. On both
+                    planets, this thin skin changes form and sometimes erupts into volcanoes in response to the ebb and
+                    flow of heat and pressure deep beneath.
+
+                    On Earth, the slow movement of continents over thousands and millions of years reshapes the surface,
+                    a process known as “plate tectonics.” Something similar might have happened on Venus early in its
+                    history. Today a key element of this process could be operating: subduction, or the sliding of one
+                    continental “plate” beneath another, which can also trigger volcanoes. Subduction is believed to be
+                    the first step in creating plate tectonics.
+
+                    NASA’s Magellan spacecraft, which ended a five-year mission to Venus in 1994, mapped the broiling
+                    surface using radar. Magellan saw a land of extreme volcanism – a relatively young surface, one
+                    recently reshaped (in geologic terms), and chains of towering mountains.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="gallery" class="content-section" style="margin: 10px;">
+        <h2 class="text-center mb-4" style="font-size: 50px;">Image Gallery</h2> <br><br>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/venus1.jpg" alt="Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/venus2.jpg" alt="Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/venus3.webp" alt="Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/venus4.jpg" alt="Image 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/venus5.webp" alt="Image 5">
+            </div>
+            <div class="gallery-item">
+                <img src="images/venus6.jpg" alt="Image 6">
+            </div>
+            <!-- Add more images as needed -->
+        </div>
+    </section>
+
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover More Topics From Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/planet disc.png" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Planets</h5>
+                            <a href="plannet.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/jupiter-marble-pia22946-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Jupiter</h5>
+                            <a href="jupiter.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/satun 2.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">saturn</h5>
+                            <a href="saturn.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email Subscription Confirmation -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <script>
+const modal = document.getElementById("messageModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+const emailInput = document.getElementById("emailInput");
+const submitBtn = document.getElementById("submitBtn");
+
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+}
+
+closeBtn.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+function validateEmailAndSubmit(event) {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailPattern.test(email)) {
+        showModal("Thank you! We've received your email: " + email);
+    } else {
+        showModal("Please enter a valid email address.");
+    }
+
+    emailInput.value = '';
+}
+
+submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+emailInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        validateEmailAndSubmit(event);
+    }
+});
+
+    </script>
+
+</body>
+
+</html>

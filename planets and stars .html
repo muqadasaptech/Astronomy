@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="planets and stars.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6> 
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks">
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All Planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/planets and stars.jpg'); background-attachment: fixed;">
+        <div class="contain " style="padding-left: 20px; padding-right: 20px;">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 900; font-size: 100px;">planets or stars</h1>
+
+            <p class="lead" style="font-weight: 500; font-size: 25px;">Details on various latest developments in the
+                field <br> of astronomy related to planets and stars.</p>
+
+        </div>
+    </section>
+
+
+
+
+    <section id="planet-details" class="content-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <img src="images/planet and star-logo.png" alt="plannet" class="img-fluid rounded"
+                    style="max-height: 200px; width: 140px;">
+            </div>
+
+        
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Latest Developments in Astronomy: Planets
+                    and Stars</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter, the fifth planet from the Sun, has been a major
+                    focus of recent astronomical research. With groundbreaking missions like NASA's Juno spacecraft,
+                    launched in 2011, scientists are uncovering unprecedented details about its composition, weather
+                    patterns, and magnetic field. Juno, which entered Jupiter's orbit in 2016, is revealing the planet's
+                    internal structure, including the extent of its deep atmosphere, and how its massive magnetic field
+                    is generated. These insights are crucial not only for understanding Jupiter itself, but also for
+                    advancing our knowledge of planetary formation and the dynamics of other planetary systems in the
+                    universe. In particular, Juno’s close-up observations are providing new data on Jupiter’s Great Red
+                    Spot, a centuries-old storm that continues to defy full explanation, and its role in Jupiter’s
+                    atmospheric dynamics.</p>
+            </div>
+
+            <div class="text-center mb-5">
+                <img src="images/planets-stars3.jpg" alt="Jupiter" class="img-fluid rounded"
+                    style="max-height: 600px; object-fit: cover; width: 100%;">
+            </div>
+
+            <!-- Planetary Composition -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Understanding Planetary Composition: A
+                    Deep Dive</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter’s composition is a subject of intense study,
+                    especially in light of new data from missions like Juno and the Hubble Space Telescope. Jupiter is
+                    primarily made up of hydrogen and helium—elements that constitute the majority of the gas giants.
+                    But it's the distribution of these elements that continues to intrigue scientists. Recent
+                    measurements have suggested that Jupiter's core may be much larger and more complex than previously
+                    thought. Some studies propose that it could have a "core" surrounded by a layer of metallic
+                    hydrogen, with deep layers extending far below the planet's visible clouds.
+
+                    In addition to this, scientists are using the data from Juno’s gravity measurements to gain a better
+                    understanding of how Jupiter’s atmosphere interacts with its interior, providing a more complete
+                    picture of how massive planets like Jupiter form and evolve. These findings help us understand the
+                    building blocks of planetary systems and offer a window into how other, more distant exoplanets,
+                    could be structured. The similarities between Jupiter’s structure and that of other gas giants like
+                    Saturn and Uranus also reveal important clues about the diversity of planetary systems that exist in
+                    our galaxy.</p>
+            </div>
+
+            <!-- Stellar Comparisons -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Jupiter vs. Stars: A Comparative Analysis
+                </h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">While Jupiter is not a star, it has often been referred
+                    to as a “failed star” due to its composition and internal heat. The debate about whether Jupiter
+                    could have ever ignited into a star is ongoing, as its core temperature and pressure are high enough
+                    to support nuclear fusion, but not on a large enough scale to sustain it. In fact, Jupiter emits
+                    more heat than it receives from the Sun, suggesting that there are still ongoing processes deep
+                    inside the planet. This makes Jupiter more similar to brown dwarfs—objects that are too large to be
+                    planets but not quite large enough to sustain the fusion processes that power stars.
+
+                    Astronomers are now examining the similarities between Jupiter and other objects in the universe
+                    that are on the borderline between planets and stars. These include "hot Jupiters," which are gas
+                    giants found orbiting close to their parent stars, and brown dwarfs, which may share similar
+                    atmospheric features to Jupiter. These objects are providing insight into the role that gas giants
+                    play in stellar formation and evolution, especially when studying the different ways they form and
+                    how their atmospheres evolve over time. Understanding how Jupiter compares to stars not only helps
+                    us study our own solar system but also improves our knowledge of star formation in other parts of
+                    the galaxy.</p>
+            </div>
+
+            <!-- Planetary Systems & Moons -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Exploring Planetary Systems and Moons: A
+                    Window into Habitability</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter’s moons, particularly Europa, Ganymede, and
+                    Callisto, are among the most intriguing bodies in the solar system, with the potential to host life.
+                    Europa, one of Jupiter’s largest moons, has been the subject of intense study because of the
+                    subsurface ocean beneath its icy crust. Scientists believe that Europa's ocean may be in contact
+                    with a rocky mantle, providing the necessary conditions for life to exist. In recent years, studies
+                    have shown evidence of potential plumes of water vapor erupting from Europa’s surface, which could
+                    give us direct access to samples of its ocean without having to drill through miles of ice.
+
+                    The exploration of these moons is set to intensify with missions like NASA's Europa Clipper, set to
+                    launch in the 2020s, which will conduct detailed reconnaissance of Europa's ice shell and subsurface
+                    ocean. Ganymede, which has its own magnetic field, and Callisto, which is thought to have a more
+                    stable, icy surface, may also provide vital clues about the potential for life elsewhere in the
+                    universe. As we learn more about these moons, we are gaining critical insights into the habitability
+                    of icy moons around gas giants—an area of astrobiological research that could change the way we
+                    think about life beyond Earth.</p>
+            </div>
+
+            <!-- Future Space Missions -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Future Missions: Expanding Our Knowledge
+                    of Planets and Stars</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The next decade promises to bring exciting new missions
+                    that will expand our knowledge of Jupiter and its place in the broader context of the universe. The
+                    James Webb Space Telescope (JWST), slated to launch in the near future, will provide unprecedented
+                    infrared observations of Jupiter’s atmosphere, allowing scientists to study its cloud formations,
+                    storm systems, and potentially even discover new moons.
+
+                    In addition to the JWST, the upcoming Europa Clipper mission will give us a closer look at the icy
+                    moon, Europa, and its potential for habitability. The detailed data from Europa Clipper will help
+                    scientists understand how subsurface oceans on icy moons could harbor microbial life. As space
+                    exploration technology improves, these missions are set to revolutionize our understanding of not
+                    only Jupiter but of how planets and moons in other solar systems may support life. New discoveries
+                    may also be made about exoplanets—planets that exist outside our solar system—and their similarities
+                    to Jupiter, providing more context for the formation and evolution of planets and stars across the
+                    galaxy.</p>
+            </div>
+
+
+            <!-- Planetary Systems: Formation and Diversity -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Planetary Systems: Formation and
+                    Diversity</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Planets form from the dust and gas surrounding
+                    newly-formed stars. This protoplanetary disk of gas and dust collides and coalesces to form solid
+                    bodies that eventually become planets. While most planets are found orbiting stars like our Sun,
+                    astronomers have discovered many exoplanets, or planets outside our solar system, including those in
+                    star systems very different from our own. These include gas giants like Jupiter, rocky planets like
+                    Earth, and even planets orbiting binary star systems, offering a glimpse of the vast diversity of
+                    planetary systems across the galaxy. The study of planetary systems is vital for understanding the
+                    conditions that might support life and the processes that drive planetary formation and evolution.
+                </p>
+            </div>
+
+            <!-- Moons of Planets: Potential for Life -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Moons of Planets: Potential for Life</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Moons, the natural satellites that orbit planets, are an
+                    exciting area of exploration. While Earth's Moon is familiar, scientists are increasingly focused on
+                    moons of other planets, particularly in the outer solar system. Moons like Europa (Jupiter),
+                    Enceladus (Saturn), and Titan (Saturn) are intriguing because they harbor subsurface oceans, which
+                    could potentially support life. Recent missions like NASA's Europa Clipper, slated to launch in the
+                    coming years, are designed to investigate the habitability of such moons. The study of these moons
+                    could revolutionize our understanding of life beyond Earth and provide crucial insights into the
+                    conditions that make moons potential "hotspots" for extraterrestrial biology.</p>
+            </div>
+
+            <!-- Rings of Planets: Composition and Dynamics -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Rings of Planets: Composition and
+                    Dynamics</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Rings are found around the gas giants in our solar
+                    system—Saturn, Jupiter, Uranus, and Neptune. Saturn’s iconic rings, made of ice and rock particles,
+                    are the most well-known. Jupiter’s faint rings, however, are less visible and composed primarily of
+                    dust particles from its moons. The study of these planetary rings helps scientists understand the
+                    dynamics of planetary environments and the processes that lead to the formation and evolution of
+                    ring systems. New findings from missions like NASA's Cassini spacecraft, which explored Saturn and
+                    its rings in detail, continue to expand our knowledge of how these structures form and change over
+                    time.</p>
+            </div>
+
+            <!-- Distance and Location of Planets in the Solar System -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Distance and Location of Planets in the
+                    Solar System</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The distance of a planet from its star plays a crucial
+                    role in determining its characteristics, including temperature, atmosphere, and potential for
+                    supporting life. In our solar system, the planets are located at varying distances from the Sun. For
+                    example, Mercury is closest to the Sun, with an average distance of about 57 million kilometers,
+                    while Neptune, the most distant planet, orbits at around 4.5 billion kilometers. As we explore
+                    exoplanets in other star systems, astronomers are learning that distance from the star, along with
+                    other factors like the planet’s size, composition, and atmospheric conditions, are key in
+                    determining whether a planet might support life.</p>
+            </div>
+
+            <div class="text-center mb-5">
+                <img src="images/planets-stars2.jpg" alt="Jupiter" class="img-fluid rounded"
+                    style="max-height: 600px; object-fit: cover; width: 100%;">
+            </div>
+
+            <!-- Formation of Planets and Stars: A Shared History -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Formation of Planets and Stars: A Shared
+                    History</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The formation of planets and stars share common origins
+                    in a molecular cloud—a dense region of gas and dust in space. These clouds collapse under their own
+                    gravity, forming stars in the process. Planets then form in the surrounding disk of gas and dust
+                    that remains. This is known as the nebular hypothesis. New observations from the Hubble Space
+                    Telescope and ALMA (Atacama Large Millimeter/submillimeter Array) have revealed the processes of
+                    star and planet formation in real-time, allowing scientists to study the early stages of planet
+                    creation around young stars. Understanding these processes is key to understanding the origin of our
+                    own solar system and the conditions necessary for life.</p>
+            </div>
+
+            <!-- Atmosphere of Planets: Composition and Dynamics -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Atmosphere of Planets: Composition and
+                    Dynamics</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The atmospheres of planets play a vital role in shaping
+                    their climates, weather patterns, and habitability. For example, Earth's atmosphere, composed
+                    primarily of nitrogen and oxygen, supports life. In contrast, Venus' thick, toxic atmosphere traps
+                    heat in a runaway greenhouse effect, making it the hottest planet in the solar system. On Jupiter,
+                    the atmosphere is made mostly of hydrogen and helium, with ammonia, methane, and water vapor
+                    contributing to its dynamic weather systems. Jupiter’s famous Great Red Spot, a massive storm that
+                    has been raging for centuries, is one example of the dramatic atmospheric processes at work on gas
+                    giants. Understanding these planetary atmospheres is essential for determining whether conditions
+                    for life could exist on other worlds, especially exoplanets in distant star systems.</p>
+            </div>
+
+            <!-- Stars: Birth, Life Cycle, and Death -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Stars: Birth, Life Cycle, and Death</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Stars are born from the collapse of gas and dust in
+                    molecular clouds, with gravity causing the material to heat up and form a protostar. Once the core
+                    temperature is high enough, nuclear fusion begins, and the star starts to shine. Stars live for
+                    millions to billions of years, depending on their size, and their ultimate fate depends on their
+                    mass. Low-mass stars like our Sun expand into red giants before shedding their outer layers and
+                    becoming white dwarfs. High-mass stars, on the other hand, explode as supernovae, leaving behind
+                    neutron stars or black holes. The study of stellar evolution is crucial for understanding the
+                    formation of elements, the dynamics of galaxies, and the conditions for life in the universe.</p>
+            </div>
+
+            <!-- Future Space Missions: Unlocking the Mysteries of Planets and Stars -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Future Space Missions: Unlocking the
+                    Mysteries of Planets and Stars</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The next generation of space missions will provide
+                    deeper insights into planets, moons, and stars across our galaxy. Missions like the James Webb Space
+                    Telescope (JWST), set to launch soon, will provide high-resolution infrared images of distant
+                    exoplanets and their atmospheres. The study of these distant worlds will help us understand how
+                    planets form and evolve around other stars. On the other hand, upcoming missions to the outer
+                    planets and their moons, such as Europa Clipper and Dragonfly (which will explore Titan), will give
+                    us a closer look at the potential for life in our own solar system. With new technologies and
+                    advanced telescopes, humanity is on the verge of discovering answers to some of the most profound
+                    questions about the origins and future of planets, stars, and life itself.</p>
+            </div>
+            <!-- Surface Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Surface</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter is a gas giant, meaning it doesn't have a solid
+                    surface like Earth. Instead, its upper atmosphere is composed of thick clouds made of hydrogen,
+                    helium, ammonia, and methane. As you descend deeper into the planet, the atmospheric pressure
+                    increases dramatically, and the gases transition into a supercritical state—where they exhibit
+                    properties of both liquids and gases.
+
+                    The planet's "surface" is essentially the top of its thick, gaseous atmosphere, which is constantly
+                    swirling with powerful storms and high-speed winds. These winds create the distinctive bands of
+                    color that stretch across Jupiter's atmosphere. These bands, called "zones" and "belts," result from
+                    variations in temperature and chemical composition. The famous Great Red Spot is a massive,
+                    centuries-old storm that rages in the southern hemisphere, and it is one of the most well-known
+                    features of Jupiter’s upper atmosphere.
+
+                    Beneath these clouds, the atmospheric pressure becomes so intense that hydrogen is compressed into
+                    liquid form. This transition, along with extreme temperatures, contributes to the planet's
+                    mysterious and volatile atmospheric behavior. Despite the lack of a solid surface, Jupiter's
+                    atmosphere is highly dynamic, with storms, lightning, and a complex system of winds and cloud
+                    formations that scientists are still trying to fully understand.</p>
+            </div>
+
+            <!-- Structure Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Structure</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Jupiter's internal structure is made up of several
+                    distinct layers, each with unique characteristics. The outermost layer is the thick, gaseous
+                    atmosphere composed mostly of hydrogen and helium, which we observe from telescopes and space
+                    missions. As you descend deeper into the planet, the pressure increases rapidly, causing the
+                    hydrogen gas to compress into a liquid state. This transition from gas to liquid occurs around 1,000
+                    kilometers below the cloud tops, and is one of the most fascinating features of Jupiter's structure.
+
+                    Below the liquid hydrogen layer, scientists believe there exists a layer of metallic hydrogen. In
+                    this layer, hydrogen behaves like a metal under extreme pressure, conducting electricity and
+                    contributing to the planet’s powerful magnetic field. The strength of Jupiter’s magnetic field is
+                    about 14 times stronger than Earth's, and it is generated by the motion of metallic hydrogen within
+                    the planet’s interior.
+
+                    At the very core of Jupiter lies a dense, rocky or possibly icy core. Although this core has never
+                    been directly observed due to the extreme pressures and depths, scientists believe it is about the
+                    size of Earth and contains heavy elements such as iron and nickel. This core likely accounts for a
+                    significant portion of the planet’s mass, but it is surrounded by several layers of hydrogen and
+                    helium. Some recent data from NASA's Juno mission suggests that the core may be larger and more
+                    diffuse than previously thought, leading to ongoing debates about Jupiter's internal structure.
+
+                    Understanding Jupiter’s structure is crucial not only for understanding the planet itself but also
+                    for gaining insights into the formation of gas giants in general. The details of how Jupiter’s
+                    layers interact, the role of metallic hydrogen, and the behavior of its core help scientists model
+                    the evolution of other gas giants, including exoplanets discovered in distant star systems.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover Moren Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/comets home.jpg" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Comets</h5>
+                            <a href="comets.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/venus big.webp" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Venus</h5>
+                            <a href="venus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/uranus-pia18182-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Uranus</h5>
+                            <a href="uranus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+    <script>
+      const modal = document.getElementById("messageModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+const emailInput = document.getElementById("emailInput");
+const submitBtn = document.getElementById("submitBtn");
+
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+}
+
+closeBtn.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+function validateEmailAndSubmit(event) {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailPattern.test(email)) {
+        showModal("Thank you! We've received your email: " + email);
+    } else {
+        showModal("Please enter a valid email address.");
+    }
+
+    emailInput.value = '';
+}
+
+submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+emailInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        validateEmailAndSubmit(event);
+    }
+});
+
+    </script>
+
+</body>
+
+</html>

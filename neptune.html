@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Website</title>
+    <link rel="icon" href="logo-asronomy.png" type="image/webp">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="neptune.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+
+    }
+
+    body {
+
+        font-family: Arial, Helvetica, sans-serif;
+        height: 100vh;
+
+
+    }
+
+    /* footer section */
+
+
+
+    footer .astronomy-link {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    footer .astronomy {
+        color: #ff014fff;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        text-align: left;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    footer .astronomy-link:hover .astronomy {
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .para {
+        margin-right: 15px;
+    }
+
+
+
+    footer {
+
+        background-color: #000000ff;
+        position: relative;
+        width: 100%;
+        min-height: 350px;
+        padding: 3rem 1rem;
+
+    }
+
+    .container-footer {
+
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row-footer {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .col-footer {
+
+        min-width: 250px;
+        color: #f2f2f2;
+        padding: 0.2rem;
+        text-align: start;
+
+    }
+
+    .col-footer h3 {
+
+        color: #ff014fff;
+        margin-bottom: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .col-footer h3::after {
+
+        content: "";
+        height: 3px;
+        width: 0px;
+        background-color: #ff014fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transition: 0.3s ease;
+
+    }
+
+    .col-footer h3:hover::after {
+
+        width: 40px;
+    }
+
+    .col-footer .social a i {
+
+        color: #ff014fff;
+        margin-top: 2rem;
+        margin-right: 5px;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .social a i:hover {
+
+        transform: scale(1.5);
+        filter: grayscale(25);
+    }
+
+    .col-footer .link a {
+
+        display: block;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin-bottom: 5px;
+        position: relative;
+        transition: 0.3s ease;
+    }
+
+    .col-footer .link a::before {
+
+        content: "";
+        height: 16px;
+        width: 3px;
+        position: absolute;
+        top: 3px;
+        left: -10px;
+        background-color: #ff014fff;
+        transition: 0.5s ease;
+        opacity: 0;
+    }
+
+    .col-footer .link a:hover::before {
+        opacity: 1;
+
+    }
+
+    .col-footer .link a:hover {
+
+        transform: translate(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .links a:hover {
+
+        transform: translateX(-8px);
+        color: #ff014fff;
+
+    }
+
+    .col-footer .contact-detail {
+
+        display: inline-flex;
+        justify-content: space-between;
+
+    }
+
+    .col-footer .contact-detail i {
+
+        margin-right: 15px;
+
+    }
+
+    .contact-detail {
+        margin-top: 10px;
+    }
+
+    .row-footer .form {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+
+    }
+
+    .row-footer .form input {
+
+        background-color: rgb(22, 20, 20);
+        border: 0;
+        padding: 14px 20px;
+        outline: none;
+        padding: 14px 20px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
+
+    .form button {
+        padding: 14px 20px;
+        border: 0;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #ff014fff;
+
+    }
+
+
+
+
+
+
+
+
+    @media(max-width:900px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+    }
+
+
+    @media(max-width:768px) {
+
+        .row-footer {
+            flex-direction: column;
+        }
+
+        .col-footer {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 25px;
+
+        }
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+    }
+
+    .modal-content {
+        background-color: #333;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        color: #fff;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+
+    <!-- Navbar Section with Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <a class="navbar-brand" href="index.html" style="color: white; padding-left: 30px; font-size: 22px; ">Astronomy
+            Hub</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="plannet.html">Planets</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Secondary Links Div with Toggle -->
+    <div class="sub-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h6 class="m-0 d-lg-none">Explore It</h6>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#exploreLinks"
+                aria-controls="exploreLinks" aria-expanded="false" aria-label="Toggle explore links">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse d-lg-block" id="exploreLinks"> 
+            <div class="container">
+                <ul class="nav flex-column flex-lg-row justify-content-center">
+                    <li class="nav-item"><a class="nav-link" href="solar.html">Solar system</a></li>
+                    <li class="nav-item"><a class="nav-link" href="constellation.html">constellation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="comets.html">Comets</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All planets
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="mercury.html">Mercury</a>
+                            <a class="dropdown-item" href="venus.html">venus</a>
+                            <a class="dropdown-item" href="earth.html">Earth</a>
+                            <a class="dropdown-item" href="mars.html">Mars</a>
+                            <a class="dropdown-item" href="jupiter.html">Jupiter</a>
+                            <a class="dropdown-item" href="saturn.html">Saturn</a>
+                            <a class="dropdown-item" href="uranus.html">uranus</a>
+                            <a class="dropdown-item" href="neptune.html">Neptune</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="earth.html">Earth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sun.html">Sun</a></li>
+                    <li class="nav-item"><a class="nav-link" href="planets and stars .html">Planets And Stars</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Hero section with background picture  -->
+    <section id="home" class="hero d-flex align-items-center "
+        style="background-image: url('images/neptune-planet\ back.webp'); background-attachment: fixed;">
+        <div class="contain " style="padding-left: 10px; padding-right: 10px;">
+            <h1 class="display-4 font-weight-bold" style="font-weight: 900; font-size: 100px;">Neptune</h1>
+
+            <p class="lead" style="font-weight: 500; font-size: 25px;">Neptune is the eighth, and most distant planet
+                from the Sun. It’s the fourth-largest,<br> and the first planet discovered with math.</p>
+        </div>
+    </section>
+
+    <!-- Logo earth  -->
+    <section id="planet-details" class="content-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <img src="images/neptune-logo.webp" alt="" class="img-fluid roun"
+                    style="max-height: 200px;  width: 140px;">
+            </div>
+
+
+            <!-- Introduction Section -->
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Introduction</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Dark, cold, and whipped by supersonic winds, ice giant
+                    Neptune is more than 30 times as far from the Sun as Earth. Neptune is the only planet in our solar
+                    system not visible to the naked eye. In 2011 Neptune completed its first 165-year orbit since its
+                    discovery in 1846.
+
+                    Neptune is so far from the Sun that high noon on the big blue planet would seem like dim twilight to
+                    us. The warm light we see here on our home planet is roughly 900 times as bright as sunlight on
+                    Neptune.</p>
+            </div>
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Size</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">With an equatorial diameter of 30,775 miles (49,528
+                    kilometers), Neptune is about four times wider than Earth. If Earth were the size of a nickel,
+                    Neptune would be about as big as a baseball.
+
+                    From an average distance of 2.8 billion miles (4.5 billion kilometers), Neptune is 30 astronomical
+                    units away from the Sun. One astronomical unit (abbreviated as AU), is the distance from the Sun to
+                    Earth. From this distance, it takes sunlight 4 hours to travel from the Sun to Neptune.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Temperature</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Earth has an average surface temperature of around 15°C
+                    (59°F), but it varies significantly due to its climate zones.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Ring</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Also has faint rings, consisting of clumpy, dark
+                    material. The rings are not as prominent and were discovered via telescopic observations.
+                </p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Namesake</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">The name "Earth" comes from Old English and Germanic
+                    origins and simply means "the ground" or "the soil."
+                </p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Moons</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Neptune has 16 known moons. Neptune's largest moon
+                    Triton was discovered on Oct. 10, 1846, by William Lassell, just 17 days after Johann Gottfried
+                    Galle discovered the planet. Since Neptune was named for the Roman god of the sea, its moons are
+                    named for various lesser sea gods and nymphs in Greek mythology.
+
+                    Triton is the only large moon in the solar system that circles its planet in a direction opposite to
+                    the planet's rotation (a retrograde orbit), which suggests that it may once have been an independent
+                    object that Neptune captured. Triton is extremely cold, with surface temperatures around minus 391
+                    degrees Fahrenheit (minus 235 degrees Celsius). And yet, despite this deep freeze at Triton, Voyager
+                    2 discovered geysers spewing icy material upward more than 5 miles (8 kilometers). Triton's thin
+                    atmosphere, also discovered by Voyager, has been detected from Earth several times since, and is
+                    growing warmer, but scientists do not yet know why.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Formation</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Neptune took shape when the rest of the solar system
+                    formed about 4.5 billion years ago when gravity pulled swirling gas and dust in to become this ice
+                    giant. Like its neighbor Uranus, Neptune likely formed closer to the Sun and moved to the outer
+                    solar system about 4 billion years ago.
+                </p>
+            </div>
+
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Atmosphere</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;"> Similar to Uranus, with an atmosphere made of hydrogen,
+                    helium, and methane, but its deep blue color is due to unknown components and methane.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Surface</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Neptune does not have a solid surface. Its atmosphere
+                    (made up mostly of hydrogen, helium, and methane) extends to great depths, gradually merging into
+                    water and other melted ices over a heavier, solid core with about the same mass as Earth.</p>
+            </div>
+            <div class="mb-5">
+                <h2 class="mb-3" style="font-weight: bold; font-size: 2.5rem;">Structure</h2>
+                <p style="font-size: 1.1rem; line-height: 1.7;">Neptune is one of two ice giants in the outer solar
+                    system (the other is Uranus). Most (80% or more) of the planet's mass is made up of a hot dense
+                    fluid of "icy" materials – water, methane, and ammonia – above a small, rocky core. Of the giant
+                    planets, Neptune is the densest.
+
+                    Scientists think there might be an ocean of super hot water under Neptune's cold clouds. It does not
+                    boil away because incredibly high pressure keeps it locked inside.</p>
+            </div>
+        </div>
+    </section>
+    <section id="discover-more" class="content-section" style="margin-left: 10px; margin-right: 10px;">
+        <div class="text-center">
+            <h2 class="mb-4" style="font-size: 50px;">Discover Moren Topics from Astronomy Hub</h2> <br><br>
+            <div class="row justify-content-center mx-0">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/planet disc.png" class="card-img-top" alt="Planet 1">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Planets</h5>
+                            <a href="plannet.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/venus big.webp" class="card-img-top" alt="Planet 2">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Venus</h5>
+                            <a href="venus.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/jupiter-marble-pia22946-16x9-1.webp" class="card-img-top" alt="Planet 3">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Jupiter</h5>
+                            <a href="jupiter.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        <img src="images/sun king.jpg" class="card-img-top" alt="Planet 4">
+                        <div class="card-img-overlay d-flex justify-content-between align-items-end">
+                            <h5 class="card-title">Sun</h5>
+                            <a href="sun.html" target="_blank" class="icon-link">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for more planets -->
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container-footer">
+            <div class="row-footer">
+                <div class="col-footer" id="company">
+                    <a href="index.html" class="astronomy-link">
+                        <h2 class="astronomy">Astronomy Hub</h2>
+                    </a>
+
+                    <p class="para">Explore the wonders of the universe with us. Learn about galaxies, stars, and the
+                        mysteries of space!</p>
+                    <div class="social">
+                        <a href="https://www.facebook.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.twitter.com/your-profile" target="_blank"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/your-profile" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="col-footer" id="service">
+                    <h3 href="plannet.html">Explore</h3>
+                    <div class="link">
+                        <a href="solar.html">Solar System</a>
+                        <a href="constellation.html">Constellations</a>
+                        <a href="comets.html">Comets</a>
+                        <a href="plannet.html">All Planets</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="useful-link">
+                    <h3>Useful Links</h3>
+                    <div class="link">
+                        <a href="index.html">Home</a>
+                        <a href="#about">About</a>
+                        <a href="plannet.html">planets</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                </div>
+
+                <div class="col-footer" id="contact">
+                    <h3>Contact Us</h3>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>FF-42 Saima Arabian Villas, <br> Mu USA</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+03318494663</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Subscription Section -->
+            <div class="row-footer">
+                <div class="form">
+                    <form action="javascript:void(0)">
+                        <input type="email" id="emailInput" placeholder="Enter your email" style="color: white;"
+                            required>
+                        <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Email  -->
+        <div id="messageModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox/dist/index.bundle.min.js"></script>
+
+
+
+
+    <script>
+
+const modal = document.getElementById("messageModal");
+const modalMessage = document.getElementById("modalMessage");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+const emailInput = document.getElementById("emailInput");
+const submitBtn = document.getElementById("submitBtn");
+
+function showModal(message) {
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+}
+
+closeBtn.onclick = function () {
+    modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+function validateEmailAndSubmit(event) {
+    event.preventDefault();
+
+    const email = emailInput.value;
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (emailPattern.test(email)) {
+        showModal("Thank you! We've received your email: " + email);
+    } else {
+        showModal("Please enter a valid email address.");
+    }
+
+    emailInput.value = '';
+}
+
+submitBtn.addEventListener("click", validateEmailAndSubmit);
+
+emailInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        validateEmailAndSubmit(event);
+    }
+});
+
+    </script>
+</body>
+
+</html>
